@@ -20,7 +20,6 @@ public class Genre {
     @Column(columnName = "date")
     private Date year;
 
-    List<Book> genreBooks;
 
     public Genre(String name, Date year) {
         this.name = name;
@@ -31,6 +30,10 @@ public class Genre {
         this.id = id;
         this.name = name;
         this.year = year;
+    }
+
+    public Genre(Integer id) {
+        this.id = id;
     }
 
     public Genre() {

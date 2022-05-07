@@ -54,7 +54,8 @@ public class EntityButcher {
             }
         }
         if (primaryKey.equals("") && !entity.isAnnotationPresent(JoinTable.class)) throw new Exception("Mark identifier for entity "+entity.getName());
-        return result + (primaryKey + (primaryKey.equals("")||uniqueKeys.equals("")?"":",") + uniqueKeys + ((uniqueKeys.equals("")&&primaryKey.equals(""))||foreignKeys.equals("")?"":",") + foreignKeys);
+        return result + (primaryKey + (primaryKey.equals("")||uniqueKeys.equals("")?"":",") + uniqueKeys
+                + ((uniqueKeys.equals("")&&primaryKey.equals(""))||foreignKeys.equals("")?"":",") + foreignKeys);
     }
 
     public void fastParse(Class<?> entity){
