@@ -22,7 +22,7 @@ public class Dao<T> extends IDao<T>{
 
     @Override
     public void recreateTable(Class<T> entity) throws Exception{
-        try(Connection connection = ConnectionPool.getDatasource().getConnection();
+        try(Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
         ){
             String st = entityButcher.parse(entity);
@@ -34,7 +34,7 @@ public class Dao<T> extends IDao<T>{
     }
     @Override
     public void create(T entity) throws SQLException, IllegalAccessException {
-        try(Connection connection = ConnectionPool.getDatasource().getConnection();
+        try(Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement()){
             String values = "";
             String names = "";
@@ -64,7 +64,7 @@ public class Dao<T> extends IDao<T>{
 
     @Override
     public void delete(T entity) throws Exception {
-        try(Connection connection = ConnectionPool.getDatasource().getConnection();
+        try(Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement()) {
             String definingColumn = "";
             String definingValue = "";
@@ -87,7 +87,7 @@ public class Dao<T> extends IDao<T>{
     //Use raw id and new data for columns!!!
     @Override
     public void update(T entity) throws Exception {
-        try(Connection connection = ConnectionPool.getDatasource().getConnection();
+        try(Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement()){
             String st = "";
             String definingColumn = "";
@@ -125,7 +125,7 @@ public class Dao<T> extends IDao<T>{
 
     @Override
     public T findBy(T entity) throws Exception {
-        try(Connection connection = ConnectionPool.getDatasource().getConnection();
+        try(Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement()) {
             String definingColumn = "";
             String definingValue = "";
@@ -154,7 +154,7 @@ public class Dao<T> extends IDao<T>{
 
     @Override
     public List<T> findAll() throws SQLException, IllegalAccessException, InstantiationException {
-        try(Connection connection = ConnectionPool.getDatasource().getConnection();
+        try(Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement()) {
             System.out.println("select * from "+entityButcher.getTableName()+";");
             ResultSet resultSet = statement.executeQuery("select * from "+entityButcher.getTableName()+";");

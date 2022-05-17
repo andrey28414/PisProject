@@ -1,5 +1,8 @@
 package com.connectivity.Model.Dao;
 
+import com.connectivity.Model.ConnectionPool;
+
+import javax.sql.DataSource;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,6 +11,7 @@ import java.util.List;
 public abstract class IDao<T> {
     final protected EntityButcher entityButcher = new EntityButcher();
     final protected Class<T> entityClass;
+    final protected DataSource dataSource = ConnectionPool.getDatasource();
 
     protected IDao(Class<T> entity, Boolean recreateTable) throws Exception{
         this.entityClass = entity;
